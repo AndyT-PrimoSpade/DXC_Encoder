@@ -1,5 +1,3 @@
-package com.assessment.Assessment;
-
 import java.util.*;
 
 public class Encode_Decode {
