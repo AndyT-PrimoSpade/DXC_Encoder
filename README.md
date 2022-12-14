@@ -1,4 +1,5 @@
-# DXC_Encoder
+# DXC_Encoder and Decoder
 
-Encoder and Decoder
-![DXC](https://user-images.githubusercontent.com/93958328/207549475-545e2052-a5b0-4c6e-a85d-01ea8f9aa2b8.JPG)
+1st User Input will get the Offset Char.
+2nd User Input will get the String to decode and encode back.
+![DXC](https://user-images.githubusercontent.com/93958328/207661093-0ca04034-3e3f-48b5-9c09-3ca534c71157.JPG
