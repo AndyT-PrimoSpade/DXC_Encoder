@@ -12,9 +12,10 @@ public class Encode_Decode {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Offset: ");
-        String input = sc.nextLine().toUpperCase();
-        char in = input.charAt(0);
-        String str = input.substring(1);
+        char in = sc.next().charAt(0);
+        Scanner sx = new Scanner(System.in);
+        System.out.println("Words to encode: ");
+        String str = sx.nextLine().toUpperCase();
         int offset = 0;
         for (int i = 0; i < 44; i++) {
             if (in == ar[i]) {
@@ -30,8 +31,6 @@ public class Encode_Decode {
 
     public String decode(String encodedString) {
         char[] encodedArray = encodedString.toCharArray();
-        int[] position = new int[encodedString.length()];
-        int pos = 0;
         String c = "";
         int f = 0;
 
@@ -39,7 +38,7 @@ public class Encode_Decode {
             for (int k = 0; k < ar.length; k++) {
                 if (encodedArray[i] == ar[k]) {
                     f = 1;
-                    c = c + ar[k + newOFF];
+                    c = c + ar[(k + newOFF)%ar.length];
                     break;
                 }
                 if (encodedArray[i] == ' ') {
@@ -57,12 +56,6 @@ public class Encode_Decode {
 
     public String encode(String plaintext) {
         char[] res = plaintext.toCharArray(); 
-        int c = 0; 
-        for (int i = 0; i < res.length; i++) {
-            if (res[i] == ' ') {
-                c++;
-            }
-        }
         for (int j = 0; j < newOFF; j++) {
             char tem = ar[ar.length - 1];
             int l = ar.length;
@@ -73,10 +66,8 @@ public class Encode_Decode {
             }
             ar[0] = tem;
         }
-        String t = "";
         int[] position = new int[res.length]; 
         int pos = 0; 
-        int g = 0;
         int f = 0; 
         for (int k = 0; k < res.length; k++) {
             for (int i = 0; i < ori.length; i++) {
@@ -93,33 +84,18 @@ public class Encode_Decode {
             }
             f = 0;
             if (res[k] == ' ') {
-                position[pos] = 0;
+                position[pos] = 44;
                 pos++;
             }
         }
+
         String tr = "";
         for (int i = 0; i < position.length; i++) {
-            if (position[i] == 0) {
+            if (position[i] == 44) {
                 tr = tr + " ";
             }
-            if (position[i] != 0 && position[i] >= 0 && position[i] <= 43) {
+            else if (position[i] >= 0 && position[i] <= 43) {
                 tr = tr + ar[position[i]];
-            }
-            if (position[i] >= 97 && position[i] <= 122) {
-                char single = (char) position[i];
-                tr = tr + single;
-            }
-            if (position[i] >= 58 && position[i] <= 64) { 
-                char single = (char) position[i];
-                tr = tr + single;
-            }
-            if (position[i] >= 91 && position[i] <= 96) {
-                char single = (char) position[i]; 
-                tr = tr + single;
-            }
-            if (position[i] >= 123 && position[i] <= 126) {
-                char single = (char) position[i]; 
-                tr = tr + single;
             }
         }
         encodedString = encodedString + tr; 
